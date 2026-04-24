@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>班级通知终端</title>
-    <link rel="stylesheet" href="style.css"/>
-    <!-- 离线缓存 + 移动端适配 -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#3182ce">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高二五班 - 通知广播系统</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- 全站访问密码弹窗 -->
+
 <div id="accessLock" class="lock-wrap">
     <div class="lock-box animate-fade">
         <h3>班级私密入口</h3>
@@ -22,9 +19,9 @@
 <div id="mainWrap" style="display:none;">
     <header class="top-bar animate-down">
         <div class="top-left">
-            <img id="logoImg" src="logo.png" alt="班级Logo">
+            <img id="logoImg" src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/7974dd1295534e3e8385fbd49f297d58.webp" alt="Logo">
             <div>
-                <h1 id="className">高二X班 · 班级通知系统</h1>
+                <h1 id="className">北二外成都附中 · 高二五班</h1>
                 <span id="weekInfo">本周：第1周</span>
             </div>
         </div>
@@ -36,32 +33,21 @@
         </div>
     </header>
 
-    <!-- 生日祝福弹窗 -->
-    <div id="birthdayModal" class="alert-modal">
-        <div class="alert-content birthday-style">
-            <h2>🎂 今日同学生日</h2>
-            <div id="birthdayText"></div>
-            <button onclick="closeBirthday()">送上祝福</button>
-        </div>
-    </div>
-
-    <!-- 紧急全屏弹窗 -->
-    <div id="alertModal" class="alert-modal">
-        <div class="alert-content">
-            <h2>紧急通知</h2>
-            <div id="alertText"></div>
-            <button onclick="closeAlert()">我已知晓</button>
+    <div id="broadcastModal" class="alert-modal">
+        <div class="alert-content" id="broadcastBox">
+            <h2 id="broadTitle">通知广播</h2>
+            <div id="broadContent"></div>
+            <div id="broadFile"></div>
+            <button onclick="confirmBroadcast()">确认已读</button>
         </div>
     </div>
 
     <div class="container">
-        <!-- 实时校园计时 -->
         <div class="card time-count-card animate-card">
             <h2>⏱️ 校园实时倒计时</h2>
             <div id="schoolTimer"></div>
         </div>
 
-        <!-- 置顶重要通知 -->
         <div id="topNoticeWrap" class="card top-notice-card animate-card" style="display:none;">
             <h2>⭐ 置顶重要通知</h2>
             <div id="topNotice"></div>
@@ -92,13 +78,8 @@
             <div id="examCountdown"></div>
         </div>
 
-        <div class="card holiday-card animate-card">
-            <h2>📅 节假日提醒</h2>
-            <div id="holidayTip"></div>
-        </div>
-
         <div class="card history-card animate-card">
-            <h2>📜 历史通知（管理员可删除）</h2>
+            <h2>📜 历史通知 & 广播记录</h2>
             <div id="historyList"></div>
         </div>
     </div>
