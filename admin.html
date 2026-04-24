@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员后台 - 高二五班</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="admin-container">
@@ -14,58 +15,44 @@
     </div>
 
     <div id="adminPanel" style="display:none;">
-        <h3>📝 发布普通通知</h3>
-        <textarea id="noticeText" placeholder="输入通知内容"></textarea>
+        <h3>📢 通知广播（核心）</h3>
+        <select id="broadTarget">
+            <option value="all">全部教室</option>
+            <option value="class1">1班</option>
+            <option value="class2">2班</option>
+            <option value="class5">5班</option>
+        </select>
+        <select id="broadLevel">
+            <option value="normal">常规 - 课后播报</option>
+            <option value="urgent">紧急 - 立即播报</option>
+        </select>
+        <textarea id="broadText" placeholder="广播内容"></textarea>
+        <input type="file" id="broadFile" accept="*">
+        <button onclick="sendBroadcast()">发送广播</button>
 
-        <h3>⭐ 发布置顶重要通知</h3>
-        <textarea id="topNoticeText" placeholder="输入需要永久置顶的重要通知"></textarea>
-        <button onclick="pushTopNotice()">设为置顶公告</button>
+        <h3>📡 广播回执查看</h3>
+        <div id="receiptLog"></div>
+
+        <hr>
+        <h3>⭐ 置顶通知</h3>
+        <textarea id="topNoticeText"></textarea>
+        <button onclick="pushTopNotice()">置顶</button>
         <button onclick="clearTopNotice()">取消置顶</button>
-        
-        <h3>🖼️ 上传图片通知</h3>
-        <input type="file" id="imgUpload" accept="image/*">
 
-        <h3>📖 发布今日作业</h3>
-        <textarea id="homeworkText" placeholder="分学科填写作业"></textarea>
+        <h3>📝 普通通知</h3>
+        <textarea id="noticeText"></textarea>
+        <input type="file" id="imgUpload" accept="image/*">
+        <button onclick="pushNotice()">发通知</button>
+        <button onclick="pushImage()">发图片</button>
+
+        <h3>📖 作业</h3>
+        <textarea id="homeworkText"></textarea>
         <button onclick="pushHomework()">发布作业</button>
 
-        <h3>🚨 发布全屏紧急弹窗</h3>
-        <textarea id="alertTextarea" placeholder="紧急通知内容"></textarea>
-
-        <div class="btn-group">
-            <button onclick="pushNotice()">发布通知</button>
-            <button onclick="pushImage()">上传图片并发布</button>
-            <button onclick="pushAlert()">推送全屏紧急通知</button>
-            <button onclick="clearAlert()">清除紧急弹窗</button>
-            <button onclick="logoutAdmin()">退出</button>
-        </div>
-
         <hr>
-        <h3>📅 编辑课表 / 作息</h3>
-        <textarea id="editTime" placeholder="自定义作息"></textarea>
-        <textarea id="editSchedule" placeholder="自定义课表"></textarea>
-        <button onclick="saveSchedule()">保存课表作息</button>
-
-        <hr>
-        <h3>⚙️ 班级自定义设置</h3>
-        <input type="text" id="setClassName" placeholder="输入班级名称">
-        <input type="text" id="setLogoUrl" placeholder="输入Logo图片链接">
-        <button onclick="saveClassConfig()">保存班级配置</button>
-
-        <hr>
-        <h3>📌 高级设置</h3>
-        <input type="text" id="examDate" placeholder="考试日期 例：2026-06-15">
-        <button onclick="saveExamDate()">保存考试时间</button>
-
-        <textarea id="birthdayList" placeholder="同学生日列表，一行一人：张三-04-24"></textarea>
-        <button onclick="saveBirthday()">保存生日列表</button>
-
-        <hr>
-        <h3>🗑️ 通知管理</h3>
-        <button onclick="clearAllNotice()">清空全部通知</button>
+        <button onclick="logoutAdmin()">退出</button>
     </div>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>
